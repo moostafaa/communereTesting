@@ -6,11 +6,13 @@ using System.Web.Mvc;
 
 namespace communereTesting.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : baseController
     {
         public ActionResult Index()
         {
-            return View();
+            ServiceLayer.Contract.Gym.IGymService service = new ServiceLayer.DLServices.Gym.GymService();
+            var model = service.GetGyms();
+            return View(model);
         }
 
         public ActionResult About()

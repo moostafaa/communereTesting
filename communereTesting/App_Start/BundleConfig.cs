@@ -23,11 +23,15 @@ namespace communereTesting
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/material.min.js",
                       "~/Scripts/ripples.min.js",
+                      "~/Scripts/jquery.dataTables.min.js",
+                      "~/Scripts/dataTables.bootstrap.min.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
                       "~/Content/bootstrap-material-design.min.css",
+                      "~/Content/datatable/jquery.dataTables.min.min.css",
+                      "~/Content/datatable/dataTables.bootstrap.min.css",
                       "~/Content/ripples.min.css"));
         }
     }

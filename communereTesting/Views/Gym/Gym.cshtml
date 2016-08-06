@@ -1,0 +1,65 @@
+﻿@model List<ViewModel.Common.ImageViewModel>
+@{
+    ViewBag.Title = "مشاهده باشگاه";
+}
+
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">مشاهده باشگاه - @ViewBag.Gym.Name</h3>
+    </div>
+    <div class="panel-body">
+        <br><br>
+        <div class="container-fluid well col-md-12">
+            <div class="row-fluid">
+                <div class="col-md-2">
+                    <img src="@ViewBag.Gym.CoverImage" style="width:150px;height:150px;" class="img-circle">
+                </div>
+
+                <div class="col-md-8">
+                    <h3>@ViewBag.Gym.Name</h3>
+                    <h6>مدیریت: @ViewBag.Gym.Manager</h6>
+                    <h6>آدرس: @ViewBag.Gym.Address</h6>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="btn-group">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3>لیست تصاویر</h3>
+        <div class="row">
+            <div id="aniimated-thumbnials">
+                @foreach (var item in Model)
+                {
+                    if (item.IsActive || true)
+                    {
+                        <a href="@item.Path">
+                            <img src="@item.Path" />
+                        </a>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section styles{
+    
+<link href="~/Content/justifiedGallery.min.css" rel="stylesheet" />
+<link href="~/Content/gallery/lightgallery.min.css" rel="stylesheet" />
+    }
+@section Scripts{
+    
+<script src="~/Scripts/jquery.justifiedGallery.min.js"></script>
+<script src="~/Scripts/gallery/lightgallery-all.min.js"></script>
+    <script>
+        $('#aniimated-thumbnials').lightGallery({
+            thumbnail: true
+        });
+        $("#aniimated-thumbnials").justifiedGallery();
+    </script>
+    }

@@ -1,0 +1,76 @@
+﻿@model ViewModel.Common.ImageListViewModel
+@{
+    ViewBag.Title = "مدیریت تصاویر";
+}
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">مدیریت تصاویر باشگاه @ViewBag.Gym.Name</h3>
+    </div>
+    <div class="panel-body">
+
+
+
+
+        <form class="form-horizontal" method="post" action="/Gym/NewImage" enctype="multipart/form-data">
+            <fieldset>
+                <legend>افزودن تصویر</legend>
+                <input type="hidden" id="GymId" name="GymId" value="@ViewBag.Gym.Id"/>
+                <div class="form-group is-empty is-fileinput">
+                    <label for="inputFile" class="col-md-2 control-label">انتخاب تصویر جدید</label>
+
+                    <div class="col-md-10">
+                        <input type="text" readonly="" class="form-control" placeholder="انتخاب از روی سیستم...">
+                        <input type="file" id="image" name="image" multiple="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-10 col-md-offset-2">
+                        <button type="submit" class="btn btn-raised btn-primary">ثبت تصویر</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
+
+
+
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>تصویر</th>
+                    <th>تصویر کاور</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Images)
+                {
+                    <tr>
+                        <td><img style="width:200px; height:200px;" src="@item.Path" /></td>
+                        <td>@item.IsCover</td>
+                        <td>
+                            <a href="#" onclick="callUrl('/gym/deleteImage?Id=@item.Id&GymId=@ViewBag.Gym.Id')">حذف تصویر</a>
+                            <a href="#" onclick="callUrl('/gym/setcover?Id=@item.Id&GymId=@ViewBag.Gym.Id')">ثبت به عنوان کاور</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        function callUrl(url)
+        {
+            if( confirm('آیا اطمینان دارید؟'))
+            window.location = url;
+        }
+
+        $(document).ready(function () {
+            
+        });
+    </script>
+    }

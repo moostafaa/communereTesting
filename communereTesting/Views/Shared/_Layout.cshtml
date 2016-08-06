@@ -6,7 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    @RenderSection("styles", required: false)
 </head>
 <body>
     <div class="bs-component">
@@ -22,9 +22,9 @@
                 </div>
                 <div class="navbar-collapse collapse navbar-responsive-collapse">
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("صفحه اصلی", "Index", "Home")</li>
+                        <li>@Html.ActionLink("مدیریت باشگاه ها", "Index", "Gym")</li>
+                        <li>@Html.ActionLink("افزودن باشگاه", "Create", "Gym")</li>
                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>
@@ -32,6 +32,7 @@
         </div>
     </div>
     <div class="container body-content">
+        @Html.Partial("_Alerts")
         @RenderBody()
         <hr />
         <footer>
@@ -44,6 +45,25 @@
     @RenderSection("scripts", required: false)
     <script>
         $.material.init()
+        $('table').DataTable({
+            "language": {
+                "sProcessing": "درحال پردازش...",
+                "sLengthMenu": "نمایش محتویات _MENU_",
+                "sZeroRecords": "موردی یافت نشد",
+                "sInfo": "نمایش _START_ تا _END_ از مجموع _TOTAL_ مورد",
+                "sInfoEmpty": "تهی",
+                "sInfoFiltered": "(فیلتر شده از مجموع _MAX_ مورد)",
+                "sInfoPostFix": "",
+                "sSearch": "جستجو:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "ابتدا",
+                    "sPrevious": "قبلی",
+                    "sNext": "بعدی",
+                    "sLast": "انتها"
+                }
+            }
+        });
     </script>
 </body>
 </html>
